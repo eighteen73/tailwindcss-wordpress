@@ -1,0 +1,17 @@
+{
+  "name": "@eighteen73/tailwindcss-wordpress",
+  "version": "1.0.0",
+  "description": "Tailwind CSS WordPress Utilities",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "git@github.com:eighteen73/tailwindcss-wordpress.git",
+  "bugs": "https://github.com/eighteen73/tailwindcss-wordpress/issues",
+  "author": "Brett Mason <brett@orphans.co.uk>",
+  "keywords": [
+    "eighteen73",
+    "tailwind",
+    "tailwindcss",
+    "tailwindcss-plugin",
+    "wordpress"
+  ]
+}
