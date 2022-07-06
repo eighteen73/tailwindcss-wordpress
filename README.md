@@ -1,39 +1,69 @@
 # Tailwind CSS WordPress Utilities
 
-This Package currently allows you to use the color palette, font sizes and font families from theme.json directly in your Tailwind config. The values will be the generated WordPress CSS variables, eg `--wp--preset--color--primary`.
-
-Currently available keys are `colors`, `fontSize` and `fontFamily`.
+This Package contains a number of utilities for working with TailwindCSS and WordPress.
 
 ## Install
 
 Install the plugin:
 
-  ```bash
-  # Using npm
-  npm install @eighteen73/tailwindcss-wordpress --save-dev
+```bash
+# Using npm
+npm install @eighteen73/tailwindcss-wordpress --save-dev
 
-  # Using Yarn
-  yarn add @eighteen73/tailwindcss-wordpress -D
-  ```
+# Using Yarn
+yarn add @eighteen73/tailwindcss-wordpress -D
+```
 
-## Usage
+## Available Utilities
 
-Require the modules you'd like to use `tailwind.config.js` file:
+### themePreset()
 
-  ```js
-  // tailwind.config.js
-  const {
-    colors,
-    fontSize,
-    fontFamily,
-  } = require('@eighteen73/tailwindcss-wordpress');
+This function can be required in your `tailwind.config.js` file to pull in values from your themes theme.json file.
 
-  module.exports = {
-    // ...
-    theme: {
-      colors,
-      fontSize,
-      fontFamily,
-    }
-  }
-  ```
+Firstly require `themePreset`:
+
+```js
+// tailwind.config.js
+const { themePreset } = require('@eighteen73/tailwindcss-wordpress');
+```
+
+This function expects a dot notation string to mimic the structure of `theme.json`.
+For example, to pass Tailwind the color palette:
+
+```json
+// theme.json
+"settings": {
+// ...
+  "color": {
+    "palette": [
+      {
+        "name": "Primary",
+        "slug": "primary",
+        "color": "#DD93B5"
+        "color": "#DD93B5"
+      },
+      {
+        "name": "Secondary",
+        "slug": "secondary",
+        "color": "orange"
+      },
+      {
+        "name": "Tertiary",
+        "slug": "tertiary",
+        "color": "#0F5B66"
+      }
+    ],
+// ...
+```
+
+```js
+// tailwind.config.js
+module.exports = {
+	// ...
+	theme: {
+		colors: themePreset('.color.palette'),
+	},
+};
+```
+
+This returns an object set up to match Tailwinds format.

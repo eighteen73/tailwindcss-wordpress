@@ -1,25 +1,55 @@
-const {
-	settings: {
-		color: { palette },
-		typography: { fontSizes, fontFamilies }
-	}
-} = require(process.cwd() + '/theme.json');
+const { settings } = require(process.cwd() + '/theme.json');
+const { get, _ } = require('lodash');
 
 /**
+ * A map of theme.json properties and the used key for its CSS variable.
+ */
+const cssProperties = {
+	fontSizes: 'font-size',
+	fontFamilies: 'font-family',
+	palette: 'color',
+};
+
+/**
+ * Returns an object from theme.json formatted ready for Tailwind.
  *
- * @param {object} themeKey The theme.json key object.
- * @param {string} variableKey The WordPress CSS variable key.
+ * @param {string} themeKey A dot notation string representation of the key to retrieve.
  * @returns {object}
  */
-function getThemeValues( themeKey, variableKey ) {
+function themePreset(themeKey) {
 	const values = {};
+	const setting = get(settings, themeKey);
 
-	themeKey.forEach((item) => {
-		const { slug } = item;
-		values[slug] = toVariable(variableKey, convertSlug(slug));
-	});
+	if (setting) {
+		setting.forEach((item) => {
+			const { slug } = item;
+			const cssProperty = getCssProperty(themeKey);
+			values[slug] = toVariable(cssProperty, toSlug(slug));
+		});
+	}
 
 	return values;
+}
+
+/**
+ * Returns the name of the theme.json created css variable key.
+ *
+ * @param {string} themeKey
+ * @returns {string}
+ */
+function getCssProperty(themeKey) {
+	let cssProperty;
+
+	const keys = themeKey.split('.');
+	const key = _.last(keys);
+
+	if (key in cssProperties) {
+		cssProperty = get(cssProperties, key);
+	} else {
+		cssProperty = _.kebabCase(key);
+	}
+
+	return cssProperty;
 }
 
 /**
@@ -30,51 +60,23 @@ function getThemeValues( themeKey, variableKey ) {
  * @param {string} value The value of the key.
  * @returns {string}
  */
- function toVariable(key, value) {
+function toVariable(key, value) {
 	return `var(--wp--preset--${key}--${value})`;
 }
 
 /**
  * Checks a slug for a number, and returns a hyphenated version of the slug.
  * Unfortunately this is how WordPress treats numbered values, and so is required
- * to keep the the Tailwind conventions.
+ * to keep to the Tailwind conventions people are used.
  *
  * @param {string} slug
  * @returns {string}
  */
-function convertSlug(slug) {
+function toSlug(slug) {
 	return slug.replace(/(\d+)/, '$1-');
 }
 
 /**
- * Returns an object of theme.json color palette values.
- * @returns {object}
- */
-const colors = () => {
-	return getThemeValues(palette, 'color');
-};
-
-/**
- * Returns an object of theme.json font size values.
- * @returns {object}
- */
-const fontSize = () => {
-	return getThemeValues(fontSizes, 'font-size');
-};
-
-/**
- * Returns an object of theme.json font family values.
- * @returns {object}
- */
-const fontFamily = () => {
-	return getThemeValues(fontFamilies, 'font-family');
-};
-
-/**
  * Export available modules.
  */
-module.exports = {
-	colors,
-	fontSize,
-	fontFamily,
-}
+module.exports = { themePreset };
