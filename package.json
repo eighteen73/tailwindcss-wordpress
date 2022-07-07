@@ -7,6 +7,9 @@
   "repository": "git@github.com:eighteen73/tailwindcss-wordpress.git",
   "bugs": "https://github.com/eighteen73/tailwindcss-wordpress/issues",
   "author": "Brett Mason <brett@orphans.co.uk>",
+  "scripts": {
+    "test": "jest"
+  },
   "keywords": [
     "eighteen73",
     "tailwind",
@@ -18,7 +21,8 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@wordpress/prettier-config": "^1.4.0"
+    "@wordpress/prettier-config": "^1.4.0",
+    "jest": "^28.1.2"
   },
   "prettier": "@wordpress/prettier-config"
 }

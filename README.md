@@ -40,7 +40,6 @@ For example, to pass Tailwind the color palette:
         "name": "Primary",
         "slug": "primary",
         "color": "#DD93B5"
-        "color": "#DD93B5"
       },
       {
         "name": "Secondary",
