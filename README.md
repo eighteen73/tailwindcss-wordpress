@@ -16,15 +16,15 @@ yarn add @eighteen73/tailwindcss-wordpress -D
 
 ## Available Utilities
 
-### themePreset()
+### themeSettings()
 
 This function can be required in your `tailwind.config.js` file to pull in values from your themes theme.json file.
 
-Firstly require `themePreset`:
+Firstly require `themeSettings`:
 
 ```js
 // tailwind.config.js
-const { themePreset } = require('@eighteen73/tailwindcss-wordpress');
+const { themeSettings } = require('@eighteen73/tailwindcss-wordpress');
 ```
 
 This function expects a dot notation string to mimic the structure of `theme.json`.
@@ -60,9 +60,9 @@ For example, to pass Tailwind the color palette:
 module.exports = {
 	// ...
 	theme: {
-		colors: themePreset('.color.palette'),
+		colors: themeSettings('.color.palette'),
 	},
 };
 ```
 
-This returns an object set up to match Tailwinds format.
+This returns an object set up to match Tailwinds required format.

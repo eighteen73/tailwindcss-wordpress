@@ -1,4 +1,4 @@
-const { toVariable } = require('../src/util/toVariable');
+const { toVariable } = require('../src/util');
 
 test('Returns a WordPress theme.json formatted CSS Variable', () => {
 	expect(toVariable('color', 'primary')).toBe(

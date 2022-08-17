@@ -1,15 +1,15 @@
-const { getCssProperty } = require('./util/getCssProperty');
-const { toVariable } = require('./util/toVariable');
-const { toSlug } = require('./util/toSlug');
+const getCssProperty = require('./util/getCssProperty');
+const toVariable = require('./util/toVariable');
+const toSlug = require('./util/toSlug');
 const { _, get } = require('lodash');
 
 /**
- * Returns an object from theme.json formatted ready for Tailwind.
+ * Returns an object from theme.json `settings' key formatted ready for Tailwind.
  *
  * @param {string} themeKey A dot notation string representation of the key to retrieve.
  * @returns {object}
  */
-function themePreset(themeKey, json = require(process.cwd() + '/theme.json')) {
+module.exports = function(themeKey, json = require(process.cwd() + '/theme.json')) {
 	const values = {};
 	const setting = get(json, themeKey);
 
@@ -23,5 +23,3 @@ function themePreset(themeKey, json = require(process.cwd() + '/theme.json')) {
 
 	return values;
 }
-
-module.exports = { themePreset };

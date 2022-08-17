@@ -1,4 +1,5 @@
-const { themePreset } = require('../src/themePreset');
+const themeSettings = require('../src/themeSettings');
+
 const settings = {
     "color": {
         "background": true,
@@ -106,5 +107,5 @@ const expected = {
 }
 
 test('Returns a Tailwind formatted object of a theme.json setting', () => {
-	expect(themePreset('color.palette', settings)).toEqual(expected);
+	expect(themeSettings('color.palette', settings)).toEqual(expected);
 });

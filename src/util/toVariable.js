@@ -6,8 +6,6 @@
  * @param {string} value The value of the key.
  * @returns {string}
  */
-function toVariable(key, value) {
+module.exports = function(key, value) {
 	return `var(--wp--preset--${key}--${value})`;
 }
-
-module.exports = { toVariable };
