@@ -15,7 +15,7 @@ const cssProperties = {
  * @param {string} themeKey
  * @returns {string}
  */
-module.exports = function(themeKey) {
+module.exports = function (themeKey) {
 	let cssProperty;
 
 	const keys = themeKey.split('.');
@@ -28,4 +28,4 @@ module.exports = function(themeKey) {
 	}
 
 	return cssProperty;
-}
+};

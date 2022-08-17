@@ -1,7 +1,7 @@
 /**
  * Export available modules.
  */
- module.exports = {
+module.exports = {
 	getCssProperty: require('./getCssProperty'),
 	toSlug: require('./toSlug'),
 	toVariable: require('./toVariable'),
