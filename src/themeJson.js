@@ -9,7 +9,10 @@ const { _, get } = require('lodash');
  * @param {string} themeKey A dot notation string representation of the key to retrieve.
  * @returns {object}
  */
-module.exports = function(themeKey, json = require(process.cwd() + '/theme.json')) {
+module.exports = function (
+	themeKey,
+	json = require(process.cwd() + '/theme.json')
+) {
 	const values = {};
 	const setting = get(json, themeKey);
 
@@ -22,4 +25,4 @@ module.exports = function(themeKey, json = require(process.cwd() + '/theme.json'
 	}
 
 	return values;
-}
+};
