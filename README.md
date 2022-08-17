@@ -16,15 +16,15 @@ yarn add @eighteen73/tailwindcss-wordpress -D
 
 ## Available Utilities
 
-### themeSettings()
+### themeJson()
 
 This function can be required in your `tailwind.config.js` file to pull in values from your themes theme.json file.
 
-Firstly require `themeSettings`:
+Firstly require `themeJson`:
 
 ```js
 // tailwind.config.js
-const { themeSettings } = require('@eighteen73/tailwindcss-wordpress');
+const { themeJson } = require('@eighteen73/tailwindcss-wordpress');
 ```
 
 This function expects a dot notation string to mimic the structure of `theme.json`.
@@ -60,7 +60,7 @@ For example, to pass Tailwind the color palette:
 module.exports = {
 	// ...
 	theme: {
-		colors: themeSettings('.color.palette'),
+		colors: themeJson('settings.color.palette'),
 	},
 };
 ```

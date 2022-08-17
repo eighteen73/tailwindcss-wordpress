@@ -6,6 +6,6 @@
  * @param {string} slug
  * @returns {string}
  */
-module.exports = function(slug) {
+module.exports = function (slug) {
 	return slug.replace(/(\d+)/, '$1-');
-}
+};
