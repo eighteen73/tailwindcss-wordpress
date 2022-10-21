@@ -16,13 +16,20 @@ module.exports = function (
 ) {
 	const values = {};
 	const setting = get(json, themeKey);
+	const custom = themeKey.includes('custom');
 
-	if (setting) {
+	if (Array.isArray(setting)) {
 		setting.forEach((item) => {
 			const { slug } = item;
 			const cssProperty = getCssProperty(themeKey);
 			values[slug] = toVariable(cssProperty, toSlug(slug));
 		});
+	} else {
+		for (const item in setting) {
+			const slug = item;
+			const cssProperty = getCssProperty(themeKey);
+			values[slug] = toVariable(cssProperty, toSlug(slug), custom);
+		}
 	}
 
 	return values;
