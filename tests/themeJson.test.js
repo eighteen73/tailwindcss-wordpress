@@ -32,7 +32,13 @@ const json = {
 			],
 			text: false,
 		},
-		custom: {},
+		custom: {
+			color: {
+				primary: '#DD93B5',
+				secondary: '#F47733',
+				tertiary: '#0F5B66',
+			},
+		},
 		layout: {
 			contentSize: '1024px',
 			wideSize: '1280px',
@@ -104,12 +110,22 @@ const json = {
 	},
 };
 
-const expected = {
+const expectedPresets = {
 	primary: 'var(--wp--preset--color--primary)',
 	secondary: 'var(--wp--preset--color--secondary)',
 	tertiary: 'var(--wp--preset--color--tertiary)',
 };
 
+const expectedCustom = {
+	primary: 'var(--wp--custom--color--primary)',
+	secondary: 'var(--wp--custom--color--secondary)',
+	tertiary: 'var(--wp--custom--color--tertiary)',
+};
+
 test('Returns a Tailwind formatted object of a theme.json setting', () => {
-	expect(themeJson('settings.color.palette', json)).toEqual(expected);
+	expect(themeJson('settings.color.palette', json)).toEqual(expectedPresets);
+});
+
+test('Returns a Tailwind formatted object of a theme.json custom setting', () => {
+	expect(themeJson('settings.custom.color', json)).toEqual(expectedCustom);
 });
