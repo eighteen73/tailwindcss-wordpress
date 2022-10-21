@@ -1,6 +1,6 @@
 {
   "name": "@eighteen73/tailwindcss-wordpress",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Tailwind CSS WordPress Utilities",
   "license": "MIT",
   "main": "index.js",
